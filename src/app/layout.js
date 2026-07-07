@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "../../public/fontawesome/css/all.min.css";
+import { Providers } from "./redux/provider";
+import { store } from "./redux/store";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +21,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} >
+      <link rel="preconnect" href="https://fonts.googleapis.com" precedence="default" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" precedence="default" />
+      <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" precedence="default" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossOrigin="anonymous" referrerPolicy="no-referrer" precedence="default"/>
+      <body className="min-h-full flex flex-col">
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

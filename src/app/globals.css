@@ -22,5 +22,347 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Work Sans", sans-serif;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1099;
+}
+
+.loader::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #3e3c3c7a;
+  z-index: -1;
+}
+
+
+.locationModel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #adacac;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+
+.locationModel .locationModelInner {
+  width: 100%;
+  max-width: max-content;
+  background: #f5f5f5;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.dnone{
+  display: none;
+}
+
+
+main {
+  min-height: 100vh;
+}
+
+.header .mainMenu li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  position: relative;
+  font-weight: 600;
+}
+
+
+.header .mainMenu li a:hover {
+  color: #f1ae2b;
+}
+
+.header .mainMenu li a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #9f0712;
+  width: 0;
+  height: 2px;
+  transition: .4s;
+}
+
+.header .mainMenu li a:hover:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #9f0712;
+  width: 100%;
+  height: 2px;
+  transition: .4s;
+}
+
+.header .searchPoint li a {
+  color: #9f0712;
+  transition: .4s;
+}
+
+.header .searchPoint li a:hover {
+  color: #f1ae2b;
+  transition: .4s;
+}
+
+.header .searchPoint i {
+  color: #9f0712;
+  transition: .4s;
+}
+
+.header .searchPoint i {
+  color: #f1ae2b;
+  transition: .4s;
+}
+
+@media (min-width:768px) {
+  .header .searchPoint i {
+    color: #9f0712;
+  }
+
+  .header .searchPoint i:hover {
+    color: #fff;
+  }
+}
+
+.header .searchPoint i:hover {
+  color: #f1ae2b;
+}
+
+
+
+
+
+
+/* Banner */
+.headerBanner {
+  height: 100%;
+  min-height: 600px;
+}
+
+
+
+.bg_bannerImage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+}
+
+@media(max-width:768px) {
+  .bg_bannerImage {
+    object-position: right;
+    height: 100%;
+  }
+}
+
+
+.banner {
+  height: 100%;
+  min-height: 660px;
+}
+
+
+@media (max-width:1190px) {
+  .banner {
+    height: 100%;
+    min-height: 400px;
+  }
+}
+
+.banner .leavesPhotobanner {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  object-fit: cover;
+  object-position: center;
+  width: 450px;
+  height: auto;
+  transform: translate(-50%, 0%);
+}
+
+@media (max-width:1024px) {
+  .banner {
+    height: 100%;
+    min-height: 400px;
+  }
+
+  .banner .leavesPhotobanner {
+    width: 300px;
+    left: 50%;
+    transform: translate(-70%, -50%);
+  }
+}
+
+@media (max-width:768px) {
+  .banner .leavesPhotobanner {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* About */
+.about .about_leavesimg {
+  position: absolute;
+  right: 10%;
+  top: 20%;
+  object-fit: cover;
+  object-position: center;
+  width: 30%;
+  height: auto;
+  z-index: -1;
+}
+
+@media(max-width:768px) {
+  .about .about_leavesimg {
+    width: 60%;
+    top: 70%;
+  }
+}
+
+
+
+.top_Restaurant .subHeading::before {
+  content: "";
+  background: #f1ae2b;
+  width: 48%;
+  height: 2px;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+}
+
+.top_Restaurant .subHeading::after {
+  content: "";
+  background: #f1ae2b;
+  width: calc(100% - 54%);
+  height: 2px;
+  position: absolute;
+  bottom: -8px;
+  right: 0;
+}
+
+.top_Restaurant .subHeadingUnderline {
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  background: #f1ae2b;
+  width: 8px;
+  height: 8px;
+  transform: translate(-0%, 50%);
+  border-radius: 100%;
+}
+
+
+
+.testimonials .clientImage {
+  position: absolute;
+  left: 50%;
+  bottom: -34px;
+  transform: translate(-50%, 0%);
+  filter: drop-shadow(1px 4px 2px #111);
+}
+
+
+.swiper {
+  height: 400px;
+}
+
+
+
+
+/* Footer */
+.footer .footerMenu h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #f1ae2b;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Admin */
+.login {
+  position: relative;
+  overflow: hidden;
+}
+
+.adminHeader {
+  width: calc(100% - 300px);
+  background-color: white;
+  margin-left: auto;
+  box-shadow: 1px 1px 8px #ededed;
+}
+
+.adminSidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background: white;
+  box-shadow: 1px 1px 8px #ededed;
+}
+
+
+
+.adminMain {
+  width: calc(100% - 300px);
+  margin-left: auto;
+  padding: 25px;
+  background-color: rgb(206, 219, 230);
 }
