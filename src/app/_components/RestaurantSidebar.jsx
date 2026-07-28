@@ -9,7 +9,11 @@ export default function RestaurantSidebar() {
 
     const menuItems = [
         { name: "Dashboard", href: '/restaurant/dashboard' },
+        { name: "Category", href: '/restaurant/category' },
         { name: "Food", href: '/restaurant/food' },
+        { name: "Order", href: '/restaurant/order' },
+        { name: "Customer", href: '/restaurant/customer' },
+        { name: "Blog", href: '/restaurant/blog' },
     ]
 
     return (

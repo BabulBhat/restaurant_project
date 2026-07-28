@@ -2,8 +2,7 @@
 import RestaurantFoodList from "@/app/_components/RestaurantFoodlist";
 import RestaurantLayout from "@/app/_components/RestaurantLayout";
 import ToastAlert from "@/app/_components/ToastAlert";
-import { addFoodApi, getFood } from "@/app/redux/foodSlice";
-import { useRouter } from "next/navigation";
+import { addFoodApi, editFoodServer, getFood, updateFood } from "@/app/redux/foodSlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -11,8 +10,10 @@ import { toast } from "react-toastify";
 export default function Food() {
     const dispatch = useDispatch();
     const [food, setFood] = useState({
+        editid: '',
         name: '',
         price: '',
+        quantity: '',
         foodimg: '',
         description: '',
         tokenresto: ''
@@ -37,7 +38,7 @@ export default function Food() {
             [name]: value
         })
     }
-    const handleSaveFood = async () => {
+    const handleSaveFood =  () => {
         const token = localStorage.getItem('token');
         const { name, price, foodimg, description } = food;
         if (!name || !price || !foodimg || !description) {
@@ -49,12 +50,13 @@ export default function Food() {
                 toast('Please enter a valid image URL (must end in .jpg, .jpeg, .png, .webp, or .gif)')
             }
             else {
-                const userdata = await dispatch(addFoodApi(food));
+                const userdata =  dispatch(addFoodApi(food));
                 if (userdata.type === "addfood/fulfilled") {
                     toast('Save Successfully');
                     setFood({
                         name: '',
                         price: '',
+                        quantity: '',
                         foodimg: '',
                         description: '',
                         tokenresto: `babul ${token}`
@@ -67,7 +69,42 @@ export default function Food() {
         }
     }
 
-    // if (loading === true) return <h1>Loading...</h1>
+
+    const editFood =  (id) => {
+        const editdata =  dispatch(editFoodServer(id));
+        const { payload } = editdata;
+        setFood({
+            ...food,
+            editid: payload._id,
+            name: payload.name,
+            price: payload.price,
+            quantity: payload.quantity,
+            foodimg: payload.foodimg,
+            description: payload.description
+        })
+    }
+
+    const handleUpdate =  (food) => {
+        const token = localStorage.getItem('token');
+        const userdata =  dispatch(updateFood(food));
+        if (userdata.type === "updateFood/fulfilled") {
+            toast('Update Successfully');
+            setFood({
+                editid: '',
+                name: '',
+                price: '',
+                quantity: '',
+                foodimg: '',
+                description: '',
+                tokenresto: `babul ${token}`
+            })
+        }
+        else {
+            toast("Failed");
+        }
+    }
+
+
     return (
         <RestaurantLayout>
             <div className="restaurantFood bg-white p-4">
@@ -83,11 +120,19 @@ export default function Food() {
                     </div>
                     <div>
                         <label htmlFor="" className="block py-2">Category</label>
-                        <input type="text" disabled
+                        <input type="text"
                             name=""
                             value=""
                             onChange={handleChange}
                             className="p-2 border-1 border-gray-200 w-full rounded-md focus-visible:outline-none read-only:bg-gray-400" placeholder="Category" />
+                    </div>
+                    <div>
+                        <label htmlFor="" className="block py-2">Quantity</label>
+                        <input type="number"
+                            name="quantity"
+                            value={food.quantity}
+                            onChange={handleChange}
+                            className="p-2 border-1 border-gray-200 w-full rounded-md focus-visible:outline-none" placeholder="Quantity" />
                     </div>
                     <div>
                         <label htmlFor="" className="block py-2">Price</label>
@@ -116,12 +161,16 @@ export default function Food() {
 
                 </div>
                 <div className="mt-3">
-                    <button className="cursor-pointer bg-red-800 px-4 py-3 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-yellow-600" onClick={handleSaveFood}>Add Food</button>
+                    <button className="cursor-pointer bg-red-800 px-4 py-3 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-yellow-600"
+                        onClick={food.editid ? () => handleUpdate(food) : handleSaveFood}>
+                        {
+                            food.editid ? "Update" : "Add Food"
+                        }
+                    </button>
                 </div>
 
             </div>
-            <RestaurantFoodList />
-
+            <RestaurantFoodList editFood={editFood} />
             <ToastAlert />
         </RestaurantLayout>
     )

@@ -6,6 +6,7 @@ import { restaurantSchema } from "@/app/lib/restaurant/restaurantsModel";
 export async function GET(req) {
     const querysearch = await req.nextUrl.searchParams;
     let filter = {}
+    let success = false;
     if (querysearch.get('location')) {
         let city = querysearch.get('location')
         filter = { city: { $regex: new RegExp(city, 'i') } }

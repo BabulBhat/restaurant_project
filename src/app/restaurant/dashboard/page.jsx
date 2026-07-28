@@ -8,7 +8,7 @@ import RestaurantLayout from "@/app/_components/RestaurantLayout";
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
-    const router = useRouter();   
+    const router = useRouter();
     return (
         <RestaurantLayout>
             {

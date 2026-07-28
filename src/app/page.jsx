@@ -21,6 +21,7 @@ import deliveryBoy from "../../public/image/delivery_Boy.png"
 
 export default function Home() {
   const [getLocation, setGetLocation] = useState(null);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
   useEffect(() => {
     const getStorage = localStorage.getItem('location')
     setGetLocation(getStorage)
@@ -28,9 +29,7 @@ export default function Home() {
   }, [getLocation])
 
   const loadrest = async (params) => {
-    console.log(params);
-
-    const res = await fetch(`http://localhost:3000/api/frontend/toprestaurant`, {
+    const res = await fetch(`${baseUrl}/api/frontend/toprestaurant`, {
       method: "GET"
     })
   }
