@@ -8,7 +8,7 @@ const nextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://your-frontend.vercel.app",
+            value: "https://restaurant-project-phi-eight.vercel.app",
           },
           {
             key: "Access-Control-Allow-Methods",
