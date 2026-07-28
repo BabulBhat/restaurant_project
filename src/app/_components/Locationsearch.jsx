@@ -8,9 +8,9 @@ export default function Locationsearch(props) {
     useEffect(() => {
         loadLocation()
     }, [])
-
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
     const loadLocation = async () => {
-        let response = await fetch(`http://localhost:3000/api/frontend/location`, {
+        let response = await fetch(`${baseUrl}/api/frontend/location`, {
             method: "GET",
         })
         response = await response.json();
