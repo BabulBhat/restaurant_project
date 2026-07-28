@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
+
 
 // Get Category
 export const getCategory = createAsyncThunk(
@@ -6,7 +8,7 @@ export const getCategory = createAsyncThunk(
   async (userdata, thunkApi) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/admin/category?page=${userdata.page}&limit=5`,
+        `${baseUrl}/api/admin/category?page=${userdata.page}&limit=5`,
         {
           method: "GET",
           headers: {
@@ -28,7 +30,7 @@ export const addcategory = createAsyncThunk(
   "addcategory",
   async (userdata, { dispatch }, thunkApi) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/category`, {
+      const res = await fetch(`${baseUrl}/api/admin/category`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +59,7 @@ export const delCategory = createAsyncThunk(
     if (!confirmDelete) return rejectWithValue("Delete cancelled");
     try {
       const res = await fetch(
-        `http://localhost:3000/api/admin/category/${userdata.id}`,
+        `${baseUrl}/api/admin/category/${userdata.id}`,
         {
           method: "DELETE",
         },
@@ -81,7 +83,7 @@ export const editCategory = createAsyncThunk(
   async (userdata, thunkApi) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/admin/category/${userdata}`,
+        `${baseUrl}/api/admin/category/${userdata}`,
         {
           method: "GET",
         },
@@ -101,7 +103,7 @@ export const updateCategory = createAsyncThunk(
     console.log(userdata);
       
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/category/${userdata.editid}`, {
+      const res = await fetch(`${baseUrl}/api/admin/category/${userdata.editid}`, {
         method: "PUT",
         body: JSON.stringify(userdata),
       });

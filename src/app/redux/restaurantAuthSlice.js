@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
-
+const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 // Registration Restaurant Api
 export const RestaurantRegisterAuth = createAsyncThunk("restaurantregister", async (userData, thunkApi) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/admin/restaurant`, {
+        const res = await fetch(`${baseUrl}/api/admin/restaurant`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
@@ -23,7 +23,7 @@ export const RestaurantRegisterAuth = createAsyncThunk("restaurantregister", asy
 // Login Restaurant Api
 export const RestaurantLoginAuth = createAsyncThunk('restaurantlogin', async (userdata, thunkApi) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/admin/restaurant`, {
+        const res = await fetch(`${baseUrl}/api/admin/restaurant`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userdata)
@@ -41,7 +41,7 @@ export const RestaurantLoginAuth = createAsyncThunk('restaurantlogin', async (us
 // Profile Show
 export const RestaurantProfile = createAsyncThunk('restaurantprofile', async (token, thunkApi) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/admin/restaurant`, {
+        const res = await fetch(`${baseUrl}/api/admin/restaurant`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export const RestaurantProfile = createAsyncThunk('restaurantprofile', async (to
 export const RestaurantprofileUpdate = createAsyncThunk('restaurantprofileUpdate', async (userdata, thunkApi) => {
 
     try {
-        const res = await fetch(`http://localhost:3000/api/admin/restaurant/${userdata.id}`, {
+        const res = await fetch(`${baseUrl}/api/admin/restaurant/${userdata.id}`, {
             method: "PUT",
             body: JSON.stringify(userdata)
         })

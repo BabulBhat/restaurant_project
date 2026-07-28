@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-
+const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 // Get Food
 export const getFood = createAsyncThunk("getfood", async (token, thunkApi) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/admin/food`, {
+    const res = await fetch(`${baseUrl}/api/admin/food`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -25,7 +25,7 @@ export const addFoodApi = createAsyncThunk(
   "addfood",
   async (userdata, { dispatch }, thunkApi) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/food`, {
+      const res = await fetch(`${baseUrl}/api/admin/food`, {
         method: "POST",
         body: JSON.stringify(userdata),
       });
@@ -46,7 +46,7 @@ export const editFoodServer = createAsyncThunk(
   async (userid, thunkApi) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/admin/food/${userid}`,
+        `${baseUrl}/api/admin/food/${userid}`,
         {
           method: "GET",
         },
@@ -65,7 +65,7 @@ export const updateFood = createAsyncThunk(
   async (userdata, { dispatch }, thunkApi) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/admin/food/${userdata.editid}`,
+        `${baseUrl}/api/admin/food/${userdata.editid}`,
         {
           method: "PUT",
           headers: {
@@ -90,7 +90,7 @@ export const delFood = createAsyncThunk("delfood", async (userid, thunkApi) => {
   const confirmDelete = confirm("Are you sure you want to delete this item?");
   if (!confirmDelete) return;
   try {
-    const res = await fetch(`http://localhost:3000/api/admin/food/${userid}`, {
+    const res = await fetch(`${baseUrl}/api/admin/food/${userid}`, {
       method: "DELETE",
     });
     const result = await res.json();

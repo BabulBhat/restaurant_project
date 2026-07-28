@@ -32,6 +32,8 @@ export default function Home() {
     const res = await fetch(`${baseUrl}/api/frontend/toprestaurant`, {
       method: "GET"
     })
+    console.log(res.json());
+    
   }
   return (
     <Layout>
