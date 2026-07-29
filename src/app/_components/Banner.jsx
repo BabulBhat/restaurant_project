@@ -4,7 +4,7 @@ import bannerDish from "../../../public/image/banner_dish.png";
 
 export default function Banner() {
     return (
-        <div className="banner bg-[url(../../public/image/banner.png)] bg-cover py-24">
+        <div className="banner bg-[url(../../public/image/banner.png)] bg-cover py-24 px-2">
             <div className="container mx-auto">
                 {/* <Image
                     src={bannerImage}

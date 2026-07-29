@@ -24,7 +24,7 @@ export default function Locationsearch(props) {
     }
     return (
         <div className="form-group relative mr-1">
-            <input type="text" className="locationSearch border-1 border-gray-400 p-3 rounded cursor-pointer focus-visible:outline-none" placeholder="Search City.." onClick={() => { setshowlocation(true); }} readOnly={true} value={props.getLocation ? props.getLocation : locationitem} />
+            <input type="text" className="locationSearch border-1 border-gray-400 p-3 rounded cursor-pointer text-black focus-visible:outline-none" placeholder="Search City.." onClick={() => { setshowlocation(true); }} readOnly={true} value={props.getLocation ? props.getLocation : locationitem} />
             <ul className="absolute left-0 top-full w-full bg-white shadow-lg">
                 {
                     showlocation && locations.map((item, index) => {

@@ -49,7 +49,7 @@ export default function Header() {
       </div>
       {/* Model End */}
       <div
-        className={`header fixed left-0 top-0 w-full z-10 ${stickyHeader ? "bg-gray-100 border-b-1 border-red-800" : ""}`}
+        className={`header fixed left-0 top-0 w-full z-10 px-2 ${stickyHeader ? "bg-gray-100 border-b-1 border-red-800" : ""}`}
       >
         <div className="container mx-auto">
           <div className="flex items-center justify-between">
@@ -62,7 +62,7 @@ export default function Header() {
               />
             </Link>
             <ul
-              className={`${checkMobileScreen ? `block items-center justify-between absolute top-full left-0 w-full bg-slate-200 overflow-hidden transform transition ${showMenu ? "h-auto" : "h-[0]"}` : ""} mainMenu md:flex md:static md:bg-transparent md:w-auto `}
+              className={`${checkMobileScreen ? `block items-center justify-between absolute top-full left-0 w-full bg-gray-100 overflow-hidden transform transition ${showMenu ? "h-auto" : "h-[0]"}` : ""} mainMenu md:flex md:static md:bg-transparent md:w-auto `}
             >
               <li>
                 <a href="" className="px-4 text-2xl text-red-800 md:text-sm">
