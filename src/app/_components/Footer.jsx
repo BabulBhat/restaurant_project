@@ -13,7 +13,7 @@ export default function Footer() {
             
             <footer className="footer bg-[url(../../public/image/background_Restaurant.png)] bg-cover pt-24 text-white">
                 <div className="container mx-auto">
-                    <div className="grid grid-cols-4 gap-10">
+                    <div className="grid grid-cols gap-10 md:grid-cols-2">
                         <div>
                             <Image
                                 src={Logo}

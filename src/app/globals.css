@@ -273,9 +273,10 @@ main {
   filter: drop-shadow(1px 4px 2px #111);
 }
 
-.swiper {
+.testimonials .swiper {
   height: 400px;
 }
+
 
 /* Footer */
 .footer .footerMenu h3::before {

@@ -50,7 +50,7 @@ export default function Home() {
               </span>
             </h2>
           </div>
-          <div className="grid grid-cols-4 gap-10 pt-14">
+          <div className="grid grid-cols gap-10 pt-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <div className="cardCategories">
               <div>
                 <Image
@@ -93,7 +93,7 @@ export default function Home() {
       {/* Ads Start */}
       <div className="ads py-24">
         <div className="container mx-auto">
-          <div className="grid grid-cols-2 gap-10">
+          <div className="grid grid-cols gap-10 md:grid-cols-2">
             <div>
               <Image
                 src={ads}
@@ -114,7 +114,7 @@ export default function Home() {
       {/* Ads End */}
 
       {/* Testimonials Start */}
-      <div className="testimonials">
+      <div className="testimonials py-12">
         <div className="container mx-auto">
           <div className="text-center pb-14">
             <span className="block text-xl font-light uppercase py-2 text-gray-800">Our Testimonial</span>
@@ -129,14 +129,23 @@ export default function Home() {
             modules={[Autoplay, Navigation, Pagination]}
             allowTouchMove={false}
             spaceBetween={15}
-            slidesPerView={3}
+            slidesPerView={1}
             navigation={true}
             loop={true}
             autoplay={{
               delay: 2000,
               pauseOnMouseEnter: true,
             }}
-
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+              },
+            }}
 
           >
             <SwiperSlide>
@@ -210,7 +219,7 @@ export default function Home() {
 
 
       {/* Fast Delivery Start */}
-      <div className="bg-[url(../../public/image/fastDelivery.png)] bg-cover bg-no-repeat ">
+      <div className="bg-[url(../../public/image/fastDelivery.png)] bg-cover bg-no-repeat py-15 lg:py-0">
         <div className="container mx-auto">
           <div className="flex items-center justify-start">
             <div className="text-white w-full max-w-md">
@@ -222,7 +231,7 @@ export default function Home() {
                 <button className="cursor-pointer bg-yellow-600 px-4 py-3 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-red-800">Order Now</button>
               </div>
             </div>
-            <div className="w-full pt-6 flex justify-center">
+            <div className="w-full pt-6 flex justify-center hidden lg:block">
               <Image
                 src={deliveryBoy}
                 alt="Delivery Boy"
@@ -245,7 +254,7 @@ export default function Home() {
               </span>
             </h2>
           </div>
-          <div className="grid grid-cols-3 gap-10">
+          <div className="grid grid-cols gap-10 md:grid-cols-2 lg:grid-cols-3">
             <div className="blogCard bg-white rounded-lg overflow-hidden shadow-gray-300 shadow-lg">
               <div>
                 <Image
