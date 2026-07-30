@@ -39,7 +39,7 @@ export default function Home() {
     <Layout>
       <Banner />
       {/* Our Food Start */}
-      <div className="ourFood py-24">
+      <div className="ourFood py-24 bg-white">
         <div className="container mx-auto">
           <div className="text-center">
             <span className="block text-xl font-light uppercase py-2 text-gray-800">Top Foods</span>
@@ -91,7 +91,7 @@ export default function Home() {
 
 
       {/* Ads Start */}
-      <div className="ads py-24">
+      <div className="ads py-24 bg-white">
         <div className="container mx-auto">
           <div className="grid grid-cols gap-10 md:grid-cols-2">
             <div>
@@ -114,7 +114,7 @@ export default function Home() {
       {/* Ads End */}
 
       {/* Testimonials Start */}
-      <div className="testimonials py-12">
+      <div className="testimonials py-12 bg-white">
         <div className="container mx-auto">
           <div className="text-center pb-14">
             <span className="block text-xl font-light uppercase py-2 text-gray-800">Our Testimonial</span>
@@ -243,7 +243,7 @@ export default function Home() {
       </div>
 
       {/* Blog Start */}
-      <div className="blog py-24">
+      <div className="blog py-24 bg-white">
         <div className="container mx-auto">
           <div className="text-center pb-14">
             <span className="block text-xl font-light uppercase py-2 text-gray-800">All Restaurant</span>
