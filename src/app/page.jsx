@@ -39,7 +39,7 @@ export default function Home() {
     <Layout>
       <Banner />
       {/* Our Food Start */}
-      <div className="ourFood py-24">
+      <div className="ourFood py-24 bg-red-600">
         <div className="container mx-auto">
           <div className="text-center">
             <span className="block text-xl font-light uppercase py-2 text-gray-800">Top Foods</span>
