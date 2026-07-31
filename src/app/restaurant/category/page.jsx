@@ -69,7 +69,7 @@ export default function Category() {
     <RestaurantLayout>
       <div className="restaurantFood bg-white p-4">
         <h2 className="text-3xl font-bold pb-3">Category</h2>
-        <div className="grid grid-cols-2 gap-x-5">
+        {/* <div className="grid grid-cols md:grid-cols-2 md:gap-x-5"> */}
           <div className="">
             <label htmlFor="">Category</label>
             <input
@@ -89,7 +89,7 @@ export default function Category() {
               {allcategory.editid ? "Update" : "Save"}
             </button>
           </div>
-        </div>
+        {/* </div> */}
       </div>
       <ToastAlert />
       <RestaurantCategoryList handleEdit={handleEdit} />

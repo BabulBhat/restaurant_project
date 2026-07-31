@@ -1,16 +1,19 @@
+import { useState } from "react";
 import RestaurantFooter from "./RestaurantFooter";
 import RestaurantHeader from "./RestaurantHeader";
-import RestaurantSidebar from "./RestaurantSidebar";
 
 export default function RestaurantLayout({ children }) {
-    return (
-        <>
-            <RestaurantHeader />
-            <RestaurantSidebar />
-            <main className="adminMain p-5 ">
-                {children}
-            </main>
-            <RestaurantFooter />
-        </>
-    )
+  const [menu, setMenu] = useState(true);
+  const handleMenu = () => {
+    setMenu(!menu);
+  };
+  return (
+    <>
+      <RestaurantHeader handleMenu={handleMenu} menu={menu} setMenu={setMenu} />
+      <main className={`adminMain p-5 ${menu ? "fullbody" : "halfbody"}`}>
+        {children}
+      </main>
+      <RestaurantFooter />
+    </>
+  );
 }

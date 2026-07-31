@@ -5,8 +5,11 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/restaurantAuthSlice";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
+import RestaurantSidebar from "./RestaurantSidebar";
 
-export default function RestaurantHeader() {
+export default function RestaurantHeader(props) {
+  const { menu, setMenu } = props;
+
   const [mode, setMode] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -39,44 +42,58 @@ export default function RestaurantHeader() {
       router.push("/restaurant");
     }
   };
+
   return (
-    <div className="adminHeader">
-      <ul className="flex items-center justify-end p-5 text-xl text-black">
-        <li className="mr-3 cursor-pointer">
-          <i className="fa-brands fa-sistrix"></i>
-        </li>
-        <li className="mr-3 cursor-pointer">
-          <Link href="/restaurant/profile">
-            <i className="fa-regular fa-user"></i>
-          </Link>
-        </li>
-        <li className="mr-3 cursor-pointer">
-          {mode ? (
+    <>
+      <div
+        className={`adminHeader flex items-center justify-between ${menu ? "fullheader" : "halfheader"}`}
+      >
+        <div className="ml-3 list flex items-center justify-center">
+          <span className="lg:hidden">
             <i
-              className="fa-solid fa-sun"
-              onClick={() => {
-                setMode(!mode);
-              }}
+              className="fa-solid fa-bars text-2xl "
+              onClick={props.handleMenu}
             ></i>
-          ) : (
+          </span>
+        </div>
+        <ul className="flex items-center justify-end py-5 text-xl text-black">
+          <li className="mr-3 cursor-pointer">
+            <i className="fa-brands fa-sistrix"></i>
+          </li>
+          <li className="mr-3 cursor-pointer">
+            <Link href="/restaurant/profile">
+              <i className="fa-regular fa-user"></i>
+            </Link>
+          </li>
+          <li className="mr-3 cursor-pointer">
+            {mode ? (
+              <i
+                className="fa-solid fa-sun"
+                onClick={() => {
+                  setMode(!mode);
+                }}
+              ></i>
+            ) : (
+              <i
+                className="fa-regular fa-moon"
+                onClick={() => {
+                  setMode(!mode);
+                }}
+              ></i>
+            )}
+          </li>
+          <li className="mr-3 cursor-pointer">
+            <i className="fa-regular fa-bell"></i>
+          </li>
+          <li className="mr-3 cursor-pointer">
             <i
-              className="fa-regular fa-moon"
-              onClick={() => {
-                setMode(!mode);
-              }}
+              className="fa-solid fa-arrow-right-from-bracket"
+              onClick={handleLogout}
             ></i>
-          )}
-        </li>
-        <li className="mr-3 cursor-pointer">
-          <i className="fa-regular fa-bell"></i>
-        </li>
-        <li className="mr-3 cursor-pointer">
-          <i
-            className="fa-solid fa-arrow-right-from-bracket"
-            onClick={handleLogout}
-          ></i>
-        </li>
-      </ul>
-    </div>
+          </li>
+        </ul>
+      </div>
+      <RestaurantSidebar menu={menu} setMenu={setMenu} />
+    </>
   );
 }

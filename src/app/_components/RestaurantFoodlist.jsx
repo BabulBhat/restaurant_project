@@ -14,8 +14,8 @@ export default function RestaurantFoodList(props) {
       ) : (
         <div className="bg-white px-4">
           <h4 className="text-3xl font-bold pb-3">Food List</h4>
-          <div className="table-responsive">
-            <table className="table-auto w-full">
+          <div className="overflow-x-auto">
+            <table className="table-auto min-w-full">
               <thead>
                 <tr className="text-left">
                   <th className="border border-gray-400 px-2">ID</th>
@@ -35,16 +35,16 @@ export default function RestaurantFoodList(props) {
                   data.result.map((item, index) => {
                     return (
                       <tr key={index} className="py-2">
-                        <td className="border border-gray-400 px-2">
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
                           {index + 1}
                         </td>
-                        <td className="border border-gray-400 px-2">
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
                           {item.name}
                         </td>
-                        <td className="border border-gray-400 px-2">
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
                           {item.price}
                         </td>
-                        <td className="border border-gray-400 px-2">
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
                           <Image
                             src={item.foodimg}
                             alt="Food Image"
@@ -52,10 +52,10 @@ export default function RestaurantFoodList(props) {
                             height={50}
                           />
                         </td>
-                        <td className="border border-gray-400 px-2">
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
                           {item.description}
                         </td>
-                        <td className="border border-gray-400 px-2">
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
                           <button
                             className="cursor-pointer bg-yellow-400 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-green-600"
                             onClick={() => props.editFood(item._id)}

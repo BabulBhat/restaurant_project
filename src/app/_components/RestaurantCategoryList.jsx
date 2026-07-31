@@ -1,11 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import { useEffect } from "react";
-import {
-  delCategory,
-  getCategory,
-  setPage,
-} from "../redux/categorySlice";
+import { delCategory, getCategory, setPage } from "../redux/categorySlice";
 import { toast } from "react-toastify";
 
 export default function RestaurantCategoryList(props) {
@@ -39,7 +35,6 @@ export default function RestaurantCategoryList(props) {
     }
   };
 
-  
   return (
     <>
       {loading === true ? (
@@ -51,51 +46,55 @@ export default function RestaurantCategoryList(props) {
             <span>
               Page {page} of {totalpage}
             </span>
-            <table className="table-auto w-full text-left">
-              <thead>
-                <tr>
-                  <th className="border border-gray-400 px-2">Sl.No</th>
-                  <th className="border border-gray-400 px-2">Date & Time</th>
-                  <th className="border border-gray-400 px-2">Category Name</th>
-                  <th className="border border-gray-400 px-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.paginationresult?.map((item, index) => {
-                  return (
-                    <tr key={index} className="py-2">
-                      <td className="border border-gray-400 px-2">
-                        {totalrecords - ((page - 1) * 5 + index)}
-                      </td>
-                      <td className="border border-gray-400 px-2">
-                        {formateDate(item.categorydate)}
-                      </td>
-                      <td className="border border-gray-400 px-2">
-                        {item.categoryname}
-                      </td>
-                      <td className="border border-gray-400 px-2">
-                        <button
-                          className="cursor-pointer bg-yellow-400 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-green-600"
-                          onClick={() => {
-                            props.handleEdit(item._id);
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="cursor-pointer bg-red-600 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-black"
-                          onClick={() => {
-                            handleDel(item._id);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="table-auto w-full text-left min-w-full">
+                <thead>
+                  <tr>
+                    <th className="border border-gray-400 px-2">Sl.No</th>
+                    <th className="border border-gray-400 px-2">Date & Time</th>
+                    <th className="border border-gray-400 px-2">
+                      Category Name
+                    </th>
+                    <th className="border border-gray-400 px-2">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.paginationresult?.map((item, index) => {
+                    return (
+                      <tr key={index} className="py-2">
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
+                          {totalrecords - ((page - 1) * 5 + index)}
+                        </td>
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
+                          {formateDate(item.categorydate)}
+                        </td>
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
+                          {item.categoryname}
+                        </td>
+                        <td className="border border-gray-400 px-2 whitespace-nowrap">
+                          <button
+                            className="cursor-pointer bg-yellow-400 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-green-600"
+                            onClick={() => {
+                              props.handleEdit(item._id);
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="cursor-pointer bg-red-600 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-black"
+                            onClick={() => {
+                              handleDel(item._id);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
             <div className="text-right mt-4">
               <button
                 className="cursor-pointer px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"

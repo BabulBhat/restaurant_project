@@ -65,20 +65,20 @@ export default function Header() {
               className={`${checkMobileScreen ? `block items-center justify-between absolute top-full left-0 w-full bg-gray-100 overflow-hidden transform transition ${showMenu ? "h-auto" : "h-[0]"}` : ""} mainMenu md:flex md:static md:bg-transparent md:w-auto `}
             >
               <li>
-                <a href="" className="px-4 text-2xl text-red-800 md:text-sm">
+                <a href="" className="px-4 text-xl text-red-800 md:text-sm">
                   Login
                 </a>
               </li>
               <li>
                 <Link
                   href="/restaurant"
-                  className="px-4 text-2xl text-red-800 md:text-sm"
+                  className="px-4 text-xl text-red-800 md:text-sm"
                 >
                   Add Restaurant
                 </Link>
               </li>
               <li>
-                <a href="" className="px-4 text-2xl text-red-800 md:text-sm">
+                <a href="" className="px-4 text-xl text-red-800 md:text-sm">
                   Best Food
                 </a>
               </li>

@@ -25,10 +25,9 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
-.container{
+.container {
   padding: 0 15px;
 }
-
 
 .loader {
   width: 100%;
@@ -175,7 +174,6 @@ main {
     width: 100%;
     max-width: 100px;
   }
-  
 }
 
 .banner {
@@ -282,7 +280,6 @@ main {
   height: 400px;
 }
 
-
 /* Footer */
 .footer .footerMenu h3::before {
   content: "";
@@ -317,9 +314,35 @@ main {
   box-shadow: 1px 1px 8px #ededed;
 }
 
+
 .adminMain {
   width: calc(100% - 300px);
   margin-left: auto;
   padding: 25px;
   background-color: rgb(206, 219, 230);
 }
+
+@media (max-width: 1024px) {
+  .adminHeader {
+    width: 100%;
+  }
+  .adminSidebar {
+    position: absolute;
+    left: 0;
+    display: none;
+  }
+  .adminSidebar.openmenu{
+    display: block;
+    
+  }
+  .adminMain {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
