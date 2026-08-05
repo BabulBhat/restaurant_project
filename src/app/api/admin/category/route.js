@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const page = Number(searchParams.get("page")) || 1;
-  const limit = Number(searchParams.get("limit")) || 3;
+  const limit = Number(searchParams.get("limit")) || 5;
 
   const start = (page - 1) * limit;
   const end = start + limit;
@@ -26,7 +26,12 @@ export async function GET(req) {
   const totalrecords = await CategorySchema.countDocuments();
   const paginationresult = mainresult.slice(start, end);
   const totalpage = Math.ceil(mainresult.length / limit);
-  return NextResponse.json({ totalrecords, page, totalpage, paginationresult });
+  return NextResponse.json({
+    totalrecords,
+    page,
+    totalpage,
+    paginationresult,
+  });
 }
 
 // Save Data Category

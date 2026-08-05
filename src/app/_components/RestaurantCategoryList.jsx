@@ -66,10 +66,10 @@ export default function RestaurantCategoryList(props) {
                           {totalrecords - ((page - 1) * 5 + index)}
                         </td>
                         <td className="border border-gray-400 px-2 whitespace-nowrap">
-                          {formateDate(item.categorydate)}
+                          {formateDate(item?.categorydate)}
                         </td>
                         <td className="border border-gray-400 px-2 whitespace-nowrap">
-                          {item.categoryname}
+                          {item?.categoryname}
                         </td>
                         <td className="border border-gray-400 px-2 whitespace-nowrap">
                           <button

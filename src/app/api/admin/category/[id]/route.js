@@ -10,21 +10,17 @@ export async function GET(req, { params }) {
   return NextResponse.json(result);
 }
 
-export async function PUT(req) {
+export async function PUT(req, { params }) {
   const payload = await req.json();
+  const { id } = await params;
   await mongoose.connect(connectToMongo);
-  const auth = await verifyToken(req);
-  console.log(auth);
-  
-  // const result = await CategorySchema.findByIdAndUpdate(
-  //   payload.editid,
-  //   payload,
-  //   { returnDocument: "after", runValidators: true },
-  // );
-  // if(!result){
-  //   return NextResponse.json("Category Not Found...")
-  // }
-
+  const result = await CategorySchema.findByIdAndUpdate(id, payload, {
+    returnDocument: "after",
+    runValidators: true,
+  });
+  if (!result) {
+    return NextResponse.json("Category Not Found...");
+  }
   return NextResponse.json(result);
 }
 

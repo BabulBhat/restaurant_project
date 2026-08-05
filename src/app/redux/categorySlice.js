@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
-
 // Get Category
 export const getCategory = createAsyncThunk(
   "getcategory",
@@ -39,11 +38,6 @@ export const addcategory = createAsyncThunk(
         body: JSON.stringify(userdata.allcategory.category),
       });
       const result = await res.json();
-      if (result) {
-        const authtoken = userdata.allcategory.tokenresto;
-        const page = userdata.page;
-        dispatch(getCategory({ authtoken, page }));
-      }
       return result;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -54,22 +48,14 @@ export const addcategory = createAsyncThunk(
 // Delete Category
 export const delCategory = createAsyncThunk(
   "delCategory",
-  async (userdata, { dispatch }, thunkApi) => {
+  async (userdata, thunkApi) => {
     const confirmDelete = confirm("Are You Sure?");
     if (!confirmDelete) return rejectWithValue("Delete cancelled");
     try {
-      const res = await fetch(
-        `${baseUrl}/api/admin/category/${userdata.id}`,
-        {
-          method: "DELETE",
-        },
-      );
+      const res = await fetch(`${baseUrl}/api/admin/category/${userdata.id}`, {
+        method: "DELETE",
+      });
       const result = await res.json();
-      if (result) {
-        const authtoken = userdata.authtoken;
-        const page = userdata.page;
-        dispatch(getCategory({ authtoken, page }));
-      }
       return result;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -82,12 +68,9 @@ export const editCategory = createAsyncThunk(
   "editCategory",
   async (userdata, thunkApi) => {
     try {
-      const res = await fetch(
-        `${baseUrl}/api/admin/category/${userdata}`,
-        {
-          method: "GET",
-        },
-      );
+      const res = await fetch(`${baseUrl}/api/admin/category/${userdata}`, {
+        method: "GET",
+      });
       const result = await res.json();
       return result;
     } catch (error) {
@@ -99,17 +82,18 @@ export const editCategory = createAsyncThunk(
 // Update Category
 export const updateCategory = createAsyncThunk(
   "updateCategory",
-  async (userdata, thunkApi) => {  
-    console.log(userdata);
-      
+  async (userdata, thunkApi) => {
     try {
-      const res = await fetch(`${baseUrl}/api/admin/category/${userdata.editid}`, {
-        method: "PUT",
-        body: JSON.stringify(userdata),
-      });
+      const categoryname = userdata.category;
+      const res = await fetch(
+        `${baseUrl}/api/admin/category/${userdata.editid}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ categoryname: userdata.category }),
+        },
+      );
       const result = await res.json();
       return result;
-      
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -140,7 +124,7 @@ const CategorySlice = createSlice({
       })
       .addCase(addcategory.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.data.paginationresult.unshift(action.payload.result);
       })
       .addCase(addcategory.rejected, (state, action) => {
         state.loading = false;
@@ -168,8 +152,12 @@ const CategorySlice = createSlice({
         state.loading = true;
       })
       .addCase(delCategory.fulfilled, (state, action) => {
-        state.data = action.payload;
         state.loading = false;
+        state.data.paginationresult = state.data.paginationresult.filter(
+          (item) => {
+            return item._id !== action.payload._id;
+          },
+        );
       })
       .addCase(delCategory.rejected, (state, action) => {
         state.loading = false;
@@ -185,6 +173,22 @@ const CategorySlice = createSlice({
         state.singleItem = action.payload;
       })
       .addCase(editCategory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // Update Category
+      .addCase(updateCategory.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        state.loading = false;
+        const index = state.data.paginationresult.findIndex((item) => {
+          return item._id === action.payload._id;
+        });
+        state.data.paginationresult[index] = action.payload;
+      })
+      .addCase(updateCategory.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

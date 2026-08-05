@@ -6,6 +6,7 @@ import { logout } from "../redux/restaurantAuthSlice";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import RestaurantSidebar from "./RestaurantSidebar";
+import { toast } from "react-toastify";
 
 export default function RestaurantHeader(props) {
   const { menu, setMenu } = props;
@@ -15,24 +16,28 @@ export default function RestaurantHeader(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     const checkToken = localStorage.getItem("token");
-    if (!checkToken) {
+    if (!checkToken || checkToken.toString().trim() === "") {
       router.push("/restaurant");
     }
     checkTime();
   }, []);
 
   const checkTime = () => {
-    const checkToken = JSON.stringify(localStorage.getItem("token"));
-    const { exp } = jwtDecode(checkToken);
-    const isExpired = exp * 1000 - Date.now();
-
-    if (isExpired <= 0) {
-      handleLogout();
+    const checkToken = localStorage.getItem("token");
+    if (!checkToken || checkToken.toString().trim() === "") {
+      router.push("/restaurant");
     } else {
-      const timer = setTimeout(() => {
+      const { exp } = jwtDecode(checkToken);
+      const isExpired = exp * 1000 - Date.now();
+
+      if (isExpired <= 0) {
         handleLogout();
-      }, isExpired);
-      return () => clearTimeout(timer);
+      } else {
+        const timer = setTimeout(() => {
+          handleLogout();
+        }, isExpired);
+        return () => clearTimeout(timer);
+      }
     }
   };
   const handleLogout = () => {
