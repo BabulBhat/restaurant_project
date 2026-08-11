@@ -56,6 +56,7 @@ export const delCategory = createAsyncThunk(
         method: "DELETE",
       });
       const result = await res.json();
+      
       return result;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -105,7 +106,7 @@ const CategorySlice = createSlice({
   initialState: {
     data: [],
     singleItem: [],
-    totalrecords: null,
+    totalrecords: 0,
     page: 1,
     totalpage: 1,
     loading: false,
@@ -124,6 +125,7 @@ const CategorySlice = createSlice({
       })
       .addCase(addcategory.fulfilled, (state, action) => {
         state.loading = false;
+        state.totalrecords = state.totalrecords + 1;
         state.data.paginationresult.unshift(action.payload.result);
       })
       .addCase(addcategory.rejected, (state, action) => {
@@ -154,10 +156,9 @@ const CategorySlice = createSlice({
       .addCase(delCategory.fulfilled, (state, action) => {
         state.loading = false;
         state.data.paginationresult = state.data.paginationresult.filter(
-          (item) => {
-            return item._id !== action.payload._id;
-          },
+          (item) => item._id !== action.payload.result._id,
         );
+
       })
       .addCase(delCategory.rejected, (state, action) => {
         state.loading = false;

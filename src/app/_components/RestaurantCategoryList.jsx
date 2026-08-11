@@ -3,12 +3,14 @@ import Loader from "./Loader";
 import { useEffect } from "react";
 import { delCategory, getCategory, setPage } from "../redux/categorySlice";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function RestaurantCategoryList(props) {
   const { data, page, totalpage, loading, totalrecords } = useSelector(
     (state) => state.category,
   );
   const dispatch = useDispatch();
+  const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("token");
     const authtoken = `babul ${token}`;
@@ -32,6 +34,9 @@ export default function RestaurantCategoryList(props) {
     const dal = await dispatch(delCategory({ authtoken, id, page }));
     if (dal === "delCategory/fulfilled") {
       toast("Delete Successfully");
+      // props.setAllCategory({
+      //   tokenresto: `babul ${token}`,
+      // })
     }
   };
 
@@ -59,39 +64,46 @@ export default function RestaurantCategoryList(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.paginationresult?.map((item, index) => {
-                    return (
-                      <tr key={index} className="py-2">
-                        <td className="border border-gray-400 px-2 whitespace-nowrap">
-                          {totalrecords - ((page - 1) * 5 + index)}
-                        </td>
-                        <td className="border border-gray-400 px-2 whitespace-nowrap">
-                          {formateDate(item?.categorydate)}
-                        </td>
-                        <td className="border border-gray-400 px-2 whitespace-nowrap">
-                          {item?.categoryname}
-                        </td>
-                        <td className="border border-gray-400 px-2 whitespace-nowrap">
-                          <button
-                            className="cursor-pointer bg-yellow-400 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-green-600"
-                            onClick={() => {
-                              props.handleEdit(item._id);
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="cursor-pointer bg-red-600 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-black"
-                            onClick={() => {
-                              handleDel(item._id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {data?.paginationresult?.length > 0 ? (
+                    data?.paginationresult?.map((item, index) => {
+                      const slno = totalrecords - ((page - 1) * 5 + index);
+                      return (
+                        <tr key={index} className="py-2">
+                          <td className="border border-gray-400 px-2 whitespace-nowrap">
+                            {slno}
+                          </td>
+                          <td className="border border-gray-400 px-2 whitespace-nowrap">
+                            {formateDate(item?.categorydate)}
+                          </td>
+                          <td className="border border-gray-400 px-2 whitespace-nowrap">
+                            {item?.categoryname}
+                          </td>
+                          <td className="border border-gray-400 px-2 whitespace-nowrap">
+                            <button
+                              className="cursor-pointer bg-yellow-400 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-green-600"
+                              onClick={() => {
+                                props.handleEdit(item._id);
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="cursor-pointer bg-red-600 px-4 py-2 rounded text-white text-sm uppercase font-semibold mr-4 hover:bg-black"
+                              onClick={() => {
+                                handleDel(item._id);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td>No Records Found...</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

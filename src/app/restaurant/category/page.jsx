@@ -62,6 +62,7 @@ export default function Category() {
   };
 
   const handleUpdate = async () => {
+    const token = localStorage.getItem("token");
     const { category } = allcategory;
     if (!category || category.toString().trim() === "") {
       toast("Please Fill The Category Filled!");
@@ -71,10 +72,13 @@ export default function Category() {
         setAllCategory({
           editid: "",
           category: "",
+          tokenresto: `babul ${token}`,
         });
       }
     }
   };
+  console.log(allcategory);
+  
   return (
     <RestaurantLayout>
       <div className="restaurantFood bg-white p-4">
@@ -102,7 +106,7 @@ export default function Category() {
         {/* </div> */}
       </div>
       <ToastAlert />
-      <RestaurantCategoryList handleEdit={handleEdit} />
+      <RestaurantCategoryList handleEdit={handleEdit}/>
     </RestaurantLayout>
   );
 }

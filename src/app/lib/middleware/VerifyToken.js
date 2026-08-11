@@ -8,6 +8,7 @@ export async function verifyToken(req) {
             return NextResponse.json({ error: 'Access Denied. Missing or malformed token.' })
         }
         const token = authHeader.split(' ')[1];
+        
         const { payload } = await jwtVerify(token, SECRET);
         return { payload, error: null };
     } catch (error) {
