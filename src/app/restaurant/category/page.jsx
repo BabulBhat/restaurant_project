@@ -77,7 +77,6 @@ export default function Category() {
       }
     }
   };
-  console.log(allcategory);
   
   return (
     <RestaurantLayout>

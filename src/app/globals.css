@@ -314,7 +314,6 @@ main {
   box-shadow: 1px 1px 8px #ededed;
 }
 
-
 .adminMain {
   width: calc(100% - 300px);
   margin-left: auto;
@@ -331,18 +330,30 @@ main {
     left: 0;
     display: none;
   }
-  .adminSidebar.openmenu{
+  .adminSidebar.openmenu {
     display: block;
-    
   }
   .adminMain {
     width: 100%;
   }
 }
 
+.restaurantFood .food_category {
+  background: #fff;
+  width: 100%;
+  position: absolute;
+  box-shadow: 0 0 2px #11111187;
+  overflow-x: auto;
+  height: 130px;
+  cursor: pointer;
+}
 
+.restaurantFood .food_category li {
+  border-bottom: 1px solid #111;
+  padding: 10px;
+}
 
-
-
-
+.restaurantFood .food_category li:hover{
+  background-color: #f5f5f5;
+}
 
