@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RestaurantLoginAuth } from "../redux/restaurantAuthSlice";
+import { RestaurantLoginAuth } from "../redux/admin/auth/restaurantAuthSlice";
 import { ToastContainer, toast } from "react-toastify";
 import ToastAlert from "./ToastAlert";
 

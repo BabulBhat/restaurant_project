@@ -35,7 +35,7 @@ export const addcategory = createAsyncThunk(
           "Content-Type": "application/json",
           Authorization: `${userdata.allcategory.tokenresto}`,
         },
-        body: JSON.stringify(userdata.allcategory.category),
+        body: JSON.stringify(userdata.allcategory),
       });
       const result = await res.json();
       return result;
@@ -90,7 +90,7 @@ export const updateCategory = createAsyncThunk(
         `${baseUrl}/api/admin/category/${userdata.editid}`,
         {
           method: "PUT",
-          body: JSON.stringify({ categoryname: userdata.category }),
+          body: JSON.stringify({ categoryname: userdata.category, categoryImg : userdata.categoryImg }),
         },
       );
       const result = await res.json();

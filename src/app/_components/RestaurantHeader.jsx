@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../redux/restaurantAuthSlice";
+import { logout } from "../redux/admin/auth/restaurantAuthSlice";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import RestaurantSidebar from "./RestaurantSidebar";

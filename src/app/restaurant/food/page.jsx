@@ -8,7 +8,7 @@ import {
   editFoodServer,
   getFood,
   updateFood,
-} from "@/app/redux/foodSlice";
+} from "@/app/redux/admin/food/foodSlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";

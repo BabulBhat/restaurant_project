@@ -6,7 +6,7 @@ import {
   addcategory,
   editCategory,
   updateCategory,
-} from "@/app/redux/categorySlice";
+} from "@/app/redux/admin/category/categorySlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -16,6 +16,7 @@ export default function Category() {
   const [allcategory, setAllCategory] = useState({
     editid: "",
     category: "",
+    categoryImg: "",
     tokenresto: "",
   });
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ export default function Category() {
         toast("Save Successfully");
         setAllCategory({
           category: "",
+          categoryImg: "",
           tokenresto: `babul ${token}`,
         });
       } else {
@@ -58,6 +60,7 @@ export default function Category() {
       ...allcategory,
       editid: payload._id,
       category: payload.categoryname,
+      categoryImg: payload.categoryImg
     });
   };
 
@@ -72,6 +75,7 @@ export default function Category() {
         setAllCategory({
           editid: "",
           category: "",
+          categoryImg: "",
           tokenresto: `babul ${token}`,
         });
       }
@@ -92,6 +96,17 @@ export default function Category() {
             name="category"
             onChange={handleChange}
             value={allcategory.category}
+          />
+        </div>
+        <div>
+          <label htmlFor="">Category Image</label>
+          <input
+            type="text"
+            className="p-2 border-1 border-gray-200 w-full rounded-md focus-visible:outline-none"
+            placeholder="Category Image"
+            name="categoryImg"
+            onChange={handleChange}
+            value={allcategory.categoryImg}
           />
         </div>
         <div className="col-span-2 mt-3">

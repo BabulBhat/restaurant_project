@@ -4,7 +4,7 @@ import Image from "next/image";
 import Profilepage from "../../../../public/image/profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { RestaurantProfile, RestaurantprofileUpdate } from "@/app/redux/restaurantAuthSlice";
+import { RestaurantProfile, RestaurantprofileUpdate } from "@/app/redux/admin/auth/restaurantAuthSlice";
 import Loader from "@/app/_components/Loader";
 import { toast } from "react-toastify";
 import ToastAlert from "@/app/_components/ToastAlert";

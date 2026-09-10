@@ -37,6 +37,8 @@ export async function GET(req) {
 // Save Data Category
 export async function POST(req, res) {
   const payload = await req.json();
+  console.log(payload);
+  
   let success = false;
   const auth = await verifyToken(req);
   await mongoose.connect(connectToMongo);
@@ -45,7 +47,8 @@ export async function POST(req, res) {
   });
   const restoid = restofind._id;
   const newpayload = {
-    categoryname: payload,
+    categoryname: payload.category,
+    categoryImg: payload.categoryImg,
     resto_id: restoid,
   };
   const category = new CategorySchema(newpayload);

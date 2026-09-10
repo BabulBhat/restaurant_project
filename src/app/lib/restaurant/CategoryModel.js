@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const CategoryModel = mongoose.Schema({
     categoryname: String,
+    categoryImg : String,
     categorydate: {
         type: Date,
         default: Date.now

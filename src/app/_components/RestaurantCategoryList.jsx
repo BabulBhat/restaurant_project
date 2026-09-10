@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import { useEffect } from "react";
-import { delCategory, getCategory, setPage } from "../redux/categorySlice";
+import { delCategory, getCategory, setPage } from "../redux/admin/category/categorySlice";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function RestaurantCategoryList(props) {
   const { data, page, totalpage, loading, totalrecords } = useSelector(
@@ -60,6 +61,9 @@ export default function RestaurantCategoryList(props) {
                     <th className="border border-gray-400 px-2">
                       Category Name
                     </th>
+                    <th className="border border-gray-400 px-2">
+                      Category Image
+                    </th>
                     <th className="border border-gray-400 px-2">Action</th>
                   </tr>
                 </thead>
@@ -77,6 +81,14 @@ export default function RestaurantCategoryList(props) {
                           </td>
                           <td className="border border-gray-400 px-2 whitespace-nowrap">
                             {item?.categoryname}
+                          </td>
+                          <td className="border border-gray-400 px-2 whitespace-nowrap">
+                            <Image
+                            src={item?.categoryImg}
+                            width={60}
+                            height={60}
+                            alt="Category Image"
+                            />
                           </td>
                           <td className="border border-gray-400 px-2 whitespace-nowrap">
                             <button

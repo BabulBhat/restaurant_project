@@ -20,6 +20,8 @@ export default function Header() {
     screenHight();
     window.addEventListener("scroll", screenHight);
   }, []);
+
+  // Mobile Responsive 
   const screensize = () => {
     if (window.innerWidth <= 768) {
       setCheckMobileScreen(window.innerWidth);
@@ -28,6 +30,7 @@ export default function Header() {
     }
   };
 
+  // Sticky Header When Scroll
   const screenHight = () => {
     if (window.scrollY > 70) {
       setstickyHeader(true);
@@ -66,7 +69,7 @@ export default function Header() {
             >
               <li>
                 <a href="" className="px-4 text-xl text-red-800 md:text-sm">
-                  Login
+                User Login
                 </a>
               </li>
               <li>
@@ -75,6 +78,14 @@ export default function Header() {
                   className="px-4 text-xl text-red-800 md:text-sm"
                 >
                   Add Restaurant
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="px-4 text-xl text-red-800 md:text-sm"
+                >
+                  Admin
                 </Link>
               </li>
               <li>

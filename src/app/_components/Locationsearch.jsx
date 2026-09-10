@@ -1,27 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getLocation } from "../redux/frontend/location/loadlocationSlice";
+import { getallCategory } from "../redux/frontend/allcategory/allcategorySlice";
 export default function Locationsearch(props) {
   const [locations, setLocations] = useState([]);
   const [locationitem, setLocationItem] = useState("");
   const [showlocation, setshowlocation] = useState(false);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     loadLocation();
-  }, []);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
+    const location = localStorage.getItem("location");
+    if (location) {
+      dispatch(getallCategory(location));
+    }
+  }, [dispatch]);
+  
   const loadLocation = async () => {
-    let response = await fetch(`${baseUrl}/api/frontend/location`, {
-      method: "GET",
-    });
-    response = await response.json();
-    setLocations(response.result);
+    const loc = await dispatch(getLocation());
+    if (loc.type === "loadlocation/fulfilled") {
+      setLocations(loc.payload);
+    }
   };
   const changeLocation = (item) => {
     setLocationItem(item);
     setshowlocation(false);
     props.setGetLocation(item);
-    localStorage.setItem("location", item);
+    localStorage.setItem("location", item);  
+    dispatch(getallCategory(item));
   };
+  
   return (
     <div className="form-group relative mr-1">
       <input

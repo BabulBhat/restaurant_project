@@ -312,13 +312,17 @@ main {
   height: 100vh;
   background: white;
   box-shadow: 1px 1px 8px #ededed;
+  color: #111;
 }
+
 
 .adminMain {
   width: calc(100% - 300px);
   margin-left: auto;
   padding: 25px;
   background-color: rgb(206, 219, 230);
+  color: #111;
+
 }
 
 @media (max-width: 1024px) {

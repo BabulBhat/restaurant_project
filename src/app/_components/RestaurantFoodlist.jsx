@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { delFood, editFood, setFoodPage } from "../redux/foodSlice";
+import { delFood, editFood, setFoodPage } from "../redux/admin/food/foodSlice";
 import Loader from "./Loader";
 
 export default function RestaurantFoodList(props) {
